@@ -1,4 +1,6 @@
 import { BrowserWindow } from 'electron';
+import express, { Express, Request, Response } from 'express';
+import dotenv from 'dotenv';
 
 export default class Main {
   static mainWindow: Electron.BrowserWindow;
@@ -33,5 +35,18 @@ export default class Main {
     Main.application = app;
     Main.application.on('window-all-closed', Main.onWindowAllClosed);
     Main.application.on('ready', Main.onReady);
+
+    dotenv.config();
+
+    const server: Express = express();
+    const port = process.env['PORT'];
+
+    server.get('/', (req: Request, res: Response) => {
+      res.send('Express + TypeScript Server');
+    });
+
+    server.listen(port, () => {
+      console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+    });
   }
 }
