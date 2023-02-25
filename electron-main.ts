@@ -33,5 +33,9 @@ export default class Main {
     Main.application = app;
     Main.application.on('window-all-closed', Main.onWindowAllClosed);
     Main.application.on('ready', Main.onReady);
+
+    // try {
+    //   require('electron-reloader')(module);
+    // } catch (_) {}
   }
 }
