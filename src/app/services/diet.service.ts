@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class DietService {
     getDietData: this.baseEndpoint + 'getDietData',
   };
 
-  getDietData() {
-    return this.http.get(this.endpoints.getDietData);
+  getDietData(): Observable<any> {
+    return this.http.get<any>(this.endpoints.getDietData);
   }
 }
